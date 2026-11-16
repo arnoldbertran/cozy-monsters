@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connecting…</title>
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;line-height:1.6;color:#222}</style>
+</head>
+<body>
+<p>Connecting to the local app…</p>
+<p id="manual" hidden>If nothing happens, copy this code into the app: <code id="code"></code></p>
+<script>
+  // Pont OAuth: TikTok no accepta localhost com a redirect URI; aquesta pàgina reenvia el codi al PC.
+  var q = window.location.search;
+  var code = new URLSearchParams(q).get("code");
+  if (code) {
+    document.getElementById("code").textContent = code;
+    document.getElementById("manual").hidden = false;
+  }
+  window.location.replace("http://localhost:8765/callback" + q);
+</script>
+</body>
+</html>
